@@ -3,32 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Kunjungan Perpustakaan</title>
+    <title>Perpustakaan Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             box-sizing: border-box;
         }
         
-        /* Menggunakan background.jpg dengan animasi bergerak */
         .bg-pattern {
             background-image: url('background.jpg');
-            background-size: cover; /* Memastikan gambar menutupi seluruh layar */
+            background-size: cover;
             background-position: center;
-            /* Animasi untuk membuat background bergerak perlahan */
             animation: pan-bg 40s linear infinite;
         }
 
         @keyframes pan-bg {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .mac-blur {
@@ -71,90 +63,106 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-pattern flex items-center justify-center p-4">
+<body class="min-h-screen bg-pattern flex items-center justify-center p-4 lg:p-8">
     
-    <div class="max-w-6xl w-full relative z-10">
-        <div class="mac-blur rounded-3xl mac-shadow p-8">
-            <div class="text-center mb-8">
-                <div class="mb-4">
-                    <img src="logo.png" alt="Logo Perpustakaan" class="mx-auto h-16 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="hidden text-4xl">📚</div>
+    <div class="max-w-screen-xl w-full relative z-10">
+        <div class="grid lg:grid-cols-5 gap-8 items-start">
+
+            <div class="lg:col-span-3 mac-blur rounded-3xl mac-shadow p-8">
+                <div class="text-center mb-8">
+                    <div class="mb-4">
+                        <img src="logo.png" alt="Logo Perpustakaan" class="mx-auto h-16 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="hidden text-4xl">📚</div>
+                    </div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Form Kunjungan Perpustakaan</h1>
+                    <p class="text-white text-opacity-70">Silakan isi data kunjungan Anda</p>
                 </div>
-                <h1 class="text-3xl font-bold text-white mb-2">Form Kunjungan Perpustakaan</h1>
-                <p class="text-white text-opacity-70">Silakan isi data kunjungan Anda</p>
+
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <form id="libraryForm" class="space-y-6">
+                            <div>
+                                <label for="nomorInduk" class="block text-sm font-medium text-white text-opacity-80 mb-2">
+                                    Nomor Induk <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="nomorInduk" name="nomorInduk" required class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none" placeholder="Masukkan nomor induk">
+                            </div>
+                            <div>
+                                <label for="nama" class="block text-sm font-medium text-white text-opacity-80 mb-2">
+                                    Nama Lengkap <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="nama" name="nama" required class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none" placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white text-opacity-80 mb-2">
+                                    Kategori <span class="text-red-400">*</span>
+                                </label>
+                                <button type="button" id="kategoriButton" class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none text-left flex justify-between items-center">
+                                    <span id="kategoriText" class="text-white text-opacity-50">Pilih kategori</span>
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <input type="hidden" id="kategori" name="kategori" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white text-opacity-80 mb-2">
+                                    Tujuan Kunjungan <span class="text-red-400">*</span>
+                                </label>
+                                <button type="button" id="tujuanButton" class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none text-left flex justify-between items-center">
+                                    <span id="tujuanText" class="text-white text-opacity-50">Pilih tujuan kunjungan</span>
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <input type="hidden" id="tujuan" name="tujuan" required>
+                                <div id="lainnyaInput" class="mt-3 hidden">
+                                    <input type="text" id="tujuanLainnya" name="tujuanLainnya" class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none" placeholder="Sebutkan tujuan lainnya...">
+                                </div>
+                            </div>
+                            <div class="pt-4">
+                                <button type="submit" class="w-full mac-button text-white font-semibold py-4 px-6 rounded-xl shadow-lg">
+                                    Kirim Data Kunjungan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="mac-blur rounded-2xl p-4">
+                            <div class="flex items-center justify-around space-x-4">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-white counter-animate" id="todayCount">0</div>
+                                    <div class="text-sm text-white text-opacity-70">Kunjungan Hari Ini</div>
+                                </div>
+                                <div class="w-px h-12 bg-white bg-opacity-20"></div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-white counter-animate" id="totalCount">0</div>
+                                    <div class="text-sm text-white text-opacity-70">Total Kunjungan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mac-blur rounded-2xl p-6">
+                            <h3 class="text-lg font-semibold text-white text-center mb-4">🏆 3 Pengunjung Terbanyak Bulan Ini</h3>
+                            <div id="topVisitors" class="space-y-3 text-white">
+                                <p class="text-center text-opacity-60">Belum ada data untuk bulan ini.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 items-start">
-                <div>
-                    <form id="libraryForm" class="space-y-6">
-                        <div>
-                            <label for="nomorInduk" class="block text-sm font-medium text-white text-opacity-80 mb-2">
-                                Nomor Induk <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="nomorInduk" name="nomorInduk" required class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none" placeholder="Masukkan nomor induk">
-                        </div>
-                        <div>
-                            <label for="nama" class="block text-sm font-medium text-white text-opacity-80 mb-2">
-                                Nama Lengkap <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="nama" name="nama" required class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none" placeholder="Masukkan nama lengkap">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-white text-opacity-80 mb-2">
-                                Kategori <span class="text-red-400">*</span>
-                            </label>
-                            <button type="button" id="kategoriButton" class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none text-left flex justify-between items-center">
-                                <span id="kategoriText" class="text-white text-opacity-50">Pilih kategori</span>
-                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
-                            </button>
-                            <input type="hidden" id="kategori" name="kategori" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-white text-opacity-80 mb-2">
-                                Tujuan Kunjungan <span class="text-red-400">*</span>
-                            </label>
-                            <button type="button" id="tujuanButton" class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none text-left flex justify-between items-center">
-                                <span id="tujuanText" class="text-white text-opacity-50">Pilih tujuan kunjungan</span>
-                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
-                            </button>
-                            <input type="hidden" id="tujuan" name="tujuan" required>
-                            <div id="lainnyaInput" class="mt-3 hidden">
-                                <input type="text" id="tujuanLainnya" name="tujuanLainnya" class="w-full px-4 py-3 mac-input rounded-xl focus:outline-none" placeholder="Sebutkan tujuan lainnya...">
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <button type="submit" class="w-full mac-button text-white font-semibold py-4 px-6 rounded-xl shadow-lg">
-                                Kirim Data Kunjungan
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="space-y-8">
-                    <div class="mac-blur rounded-2xl p-4">
-                        <div class="flex items-center justify-around space-x-4">
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-white counter-animate" id="todayCount">0</div>
-                                <div class="text-sm text-white text-opacity-70">Kunjungan Hari Ini</div>
-                            </div>
-                            <div class="w-px h-12 bg-white bg-opacity-20"></div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-white counter-animate" id="totalCount">0</div>
-                                <div class="text-sm text-white text-opacity-70">Total Kunjungan</div>
-                            </div>
-                        </div>
+            <div class="lg:col-span-2 mac-blur rounded-3xl mac-shadow p-8 h-full flex flex-col items-center justify-center">
+                <div class="text-center">
+                    <div class="mb-6">
+                        <div class="text-6xl"></div>
                     </div>
-                    <div class="mac-blur rounded-2xl p-6">
-                        <h3 class="text-lg font-semibold text-white text-center mb-4">🏆 3 Pengunjung Terbanyak Bulan Ini</h3>
-                        <div id="topVisitors" class="space-y-3 text-white">
-                            <p class="text-center text-opacity-60">Belum ada data untuk bulan ini.</p>
-                        </div>
-                    </div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Sirkulasi Perpustakaan (Mandiri)</h1>
+                    <p class="text-white text-opacity-80 font-semibold mb-4"></p>
+                    <p class="text-white text-opacity-70 mb-8 max-w-xs mx-auto">Pindai kode QR di bawah untuk melakukan peminjaman atau pengembalian buku secara mandiri.</p>
+                    <img src="barcode.jpg" alt="QR Code untuk Sirkulasi Mandiri" class="w-60 h-60 rounded-2xl shadow-lg mx-auto border-4 border-white/20">
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -203,7 +211,7 @@
     </div>
 
     <script>
-        // Semua kode JavaScript di sini (tidak ada perubahan)
+        // Seluruh kode JavaScript tetap sama, tidak perlu diubah.
         const kategoriButton = document.getElementById('kategoriButton');
         const kategoriModal = document.getElementById('kategoriModal');
         const kategoriText = document.getElementById('kategoriText');
